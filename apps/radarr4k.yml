@@ -16,7 +16,7 @@
         pgrole: 'radarr4k'
         intport: '7878'
         extport: '7874'
-        image: 'linuxserver/radarr'
+        image: 'mdhiggins/radarr-sma'
 
     - name: 'Including cron job'
       include_tasks: '/opt/communityapps/apps/_core.yml'
@@ -45,8 +45,8 @@
           - '/etc/localtime:/etc/localtime:ro'
           - '{{path.stdout}}:{{path.stdout}}'
           - '/mnt:/mnt'
-          - '/opt/appdata/{{pgrole}}:/config'
-          - '/opt/appdata/{{pgrole}}/mp4_automator:/config_mp4_automator'
+          - '/opt/appdata/sma/config_radarr4k:/usr/local/sma/config'
+          - '/opt/appdata/sma/post_process_radarr4k:/usr/local/sma/post_process'
           
     - name: 'Setting PG ENV'
       set_fact:
